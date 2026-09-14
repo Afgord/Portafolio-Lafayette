@@ -24,7 +24,7 @@ body {
     background-color: var(--fondo-principal);
     color: var(--texto-principal);
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 64px 1fr;
     min-height: 100vh;
 }
 
@@ -32,12 +32,29 @@ header {
     position: sticky;
     top: 0;
     height: 100vh;
+    width: 64px;
     align-self: start;
+
     background-color: var(--fondo-panel);
-    padding: 20px;
-    border-right: 2px solid var(--acento);
-    box-shadow: 4px 0 12px rgba(0, 207, 255, 0.08);
-    overflow-y: auto;
+    padding: 20px 0;
+
+    border-right: 4px solid var(--acento);
+    box-shadow: 4px 0 12px rgba(0, 207, 255, 0.20);
+
+    overflow: hidden;
+    transition: width 0.3s;
+
+    z-index: 10;
+}
+
+header:hover {
+    width: 280px;
+    box-shadow: 8px 0 20px rgba(0, 207, 255, 0.25);
+}
+
+header nav {
+    width: 240px;
+    margin-left: 0;
 }
 
 header h1 {
@@ -49,16 +66,39 @@ header h1 {
 nav {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    padding-top: 18px;
+    gap: 12px;
 }
 
 nav a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 250px;
+    height: 48px;
     color: var(--texto-principal);
     text-decoration: none;
     background-color: var(--boton-nav);
-    padding: 10px;
+    padding-left: 16px;
     border-radius: 8px;
     transition: 0.3s;
+}
+
+.icono-nav {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    object-fit: contain;
+}
+
+.texto-nav {
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+header:hover .texto-nav {
+    opacity: 1;
 }
 
 nav a:hover {
@@ -80,9 +120,38 @@ section {
     box-shadow: 0 0 10px rgba(0, 207, 255, 0.08);
 }
 
+#inicio h1 {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
 h2 {
     margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
     color: var(--acento);
+    background-color: var(--fondo-tarjeta);
+    padding: 10px;
+    border-radius: 8px;
+    border-bottom: 3px solid var(--acento);
+    box-shadow: 0 0 10px rgba(0, 207, 255, 0.10);
+}
+
+#inicio h2 {
+    text-align: left;
+    background-color: transparent;
+    border-bottom: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+#sobre-mi p,
+.habilidad p,
+.proyecto p,
+.formacion-bloque p,
+#contacto p {
+    text-align: justify;
+    line-height: 1.8;
 }
 
 p, li {
@@ -96,18 +165,47 @@ p, li {
     color: var(--acento);
 }
 
+.resaltado {
+    color: var(--acento);
+    font-weight: bold;
+}
+
+.enfasis {
+    font-style: italic;
+    color: var(--texto-principal);
+}
+
+.subrayado {
+    text-decoration: underline;
+}
+
 .habilidad {
     background-color: var(--fondo-tarjeta);
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 8px;
     border-left: 4px solid var(--acento);
+    transition: 0.3s;
 }
 
-.habilidad h3 {
+.habilidad:hover {
+    box-shadow: 0 0 14px rgba(0, 207, 255, 0.18);
+    transform: translateY(-2px);
+}
+
+h3 {
+    color: var(--texto-principal);
+    background-color: #1b2533;
+
+    padding: 8px 12px;
+
+    border-left: 4px solid var(--acento);
+    border-radius: 6px;
+
     margin-top: 0;
-    margin-bottom: 10px;
-    color: var(--acento);
+    margin-bottom: 15px;
+
+    box-shadow: 0 0 8px rgba(0, 207, 255, 0.08);
 }
 
 .habilidad img {
@@ -116,7 +214,7 @@ p, li {
     object-fit: cover;
     display: block;
     border-radius: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 marquee {
@@ -165,11 +263,6 @@ footer {
     border-left: 4px solid var(--acento);
 }
 
-.grupo-proyectos h3 {
-    margin-top: 0;
-    color: var(--acento);
-}
-
 .proyecto {
     background-color: #1f2937;
     padding: 15px;
@@ -199,11 +292,6 @@ footer {
     margin-bottom: 20px;
     border-radius: 8px;
     border-left: 4px solid var(--acento);
-}
-
-.formacion-bloque h3 {
-    margin-top: 0;
-    color: var(--acento);
 }
 
 form {
